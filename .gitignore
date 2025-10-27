@@ -18,6 +18,9 @@ var/
 wheels/
 *.egg-info/
 .installed.cfg
+
+# But don't ignore frontend/src/lib
+!frontend/src/lib/
 *.egg
 MANIFEST
 *.log
