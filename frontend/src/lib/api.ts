@@ -24,8 +24,8 @@ const api = axios.create({
 export interface LoginCredentials {
   username: string;
   password: string;
-  captcha: string;
-  session_id: string;
+  captcha?: string;  // Optional - will be auto-solved if not provided
+  session_id?: string;  // Optional - will be created if not provided
 }
 
 export interface SessionRequest {

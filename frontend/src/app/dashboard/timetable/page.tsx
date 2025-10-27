@@ -9,18 +9,24 @@ export default function TimetablePage() {
   const { user } = useAuthStore();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<any>(null);
+  const [attendanceData, setAttendanceData] = useState<any>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       if (!user?.sessionId) return;
       
       try {
-        console.log('Fetching timetable data...');
-        const result = await studentAPI.getTimetable(user.sessionId);
-        console.log('Timetable API response:', result);
-        setData(result);
+        console.log('Fetching timetable and attendance data...');
+        const [timetableResult, attendanceResult] = await Promise.all([
+          studentAPI.getTimetable(user.sessionId),
+          studentAPI.getAttendance(user.sessionId)
+        ]);
+        console.log('Timetable API response:', timetableResult);
+        console.log('Attendance API response:', attendanceResult);
+        setData(timetableResult);
+        setAttendanceData(attendanceResult);
       } catch (error) {
-        console.error('Error fetching timetable:', error);
+        console.error('Error fetching data:', error);
       } finally {
         setLoading(false);
       }
@@ -36,6 +42,74 @@ export default function TimetablePage() {
       </div>
     );
   }
+
+  // Helper function to get attendance for a subject
+  const getAttendanceForSubject = (subjectName: string) => {
+    if (!attendanceData?.attendance) {
+      return null;
+    }
+    
+    if (!subjectName || subjectName === '-') return null;
+    
+    // Clean the subject name from timetable
+    const cleanSubjectName = subjectName.trim().toLowerCase();
+    
+    // Find matching subject in attendance data with strict matching
+    const attendance = attendanceData.attendance.find((item: any) => {
+      const itemSubject = (item.subject || '').trim().toLowerCase();
+      const itemCode = (item.subject_code || '').trim().toLowerCase();
+      
+      // Skip empty entries
+      if (!itemSubject && !itemCode) return false;
+      
+      // Try exact match first
+      if (itemSubject === cleanSubjectName) return true;
+      if (itemCode === cleanSubjectName) return true;
+      
+      // Try matching if timetable has code and attendance has full name
+      // For example: timetable has "CS101" and attendance has "Computer Science - CS101"
+      if (itemCode && cleanSubjectName.includes(itemCode)) return true;
+      if (itemSubject.includes(cleanSubjectName) && cleanSubjectName.length > 3) return true;
+      
+      // Try matching words (for multi-word subjects)
+      const subjectWords = cleanSubjectName.split(/[\s\-_]+/).filter(w => w.length > 2);
+      const itemWords = itemSubject.split(/[\s\-_]+/).filter(w => w.length > 2);
+      
+      // If timetable subject has significant words that match attendance subject
+      if (subjectWords.length > 0) {
+        const matchCount = subjectWords.filter(word => 
+          itemWords.some(iw => iw.includes(word) || word.includes(iw))
+        ).length;
+        
+        // Require at least 50% of words to match for multi-word subjects
+        if (matchCount >= Math.ceil(subjectWords.length * 0.5) && matchCount > 0) {
+          return true;
+        }
+      }
+      
+      return false;
+    });
+    
+    if (!attendance) {
+      return null;
+    }
+    
+    const present = parseInt(attendance.present) || 0;
+    const absent = parseInt(attendance.absent) || 0;
+    const odml = parseInt(attendance.od_ml) || 0;
+    const total = present + absent + odml;
+    
+    if (total === 0) return null;
+    
+    const percentage = ((present + odml) / total) * 100;
+    
+    return {
+      percentage: percentage.toFixed(1),
+      present,
+      total,
+      isLow: percentage < 75
+    };
+  };
 
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const periodLabels = ['Period 1', 'Period 2', 'Period 3', 'Period 4', 'Period 5', 'Period 6', 'Period 7', 'Period 8'];
@@ -101,6 +175,7 @@ export default function TimetablePage() {
                       {periodLabels.map((_, periodIndex) => {
                         const periodContent = periods[periodIndex] || '';
                         const isEmpty = !periodContent || periodContent === '-';
+                        const attendance = !isEmpty ? getAttendanceForSubject(periodContent) : null;
                         
                         return (
                           <td 
@@ -119,6 +194,15 @@ export default function TimetablePage() {
                                     {periodContent}
                                   </span>
                                 </div>
+                                {attendance && (
+                                  <div className={`text-xs px-2 py-0.5 rounded-full inline-block ${
+                                    attendance.isLow 
+                                      ? 'bg-red-100 text-red-700' 
+                                      : 'bg-green-100 text-green-700'
+                                  }`}>
+                                    {attendance.percentage}% ({attendance.present}/{attendance.total})
+                                  </div>
+                                )}
                               </div>
                             )}
                           </td>
@@ -147,9 +231,10 @@ export default function TimetablePage() {
         <div className="flex gap-3">
           <Clock className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
           <div>
-            <h3 className="font-semibold text-blue-900">Timetable Note</h3>
+            <h3 className="font-semibold text-blue-900">Timetable with Attendance</h3>
             <p className="text-sm text-blue-700 mt-1">
-              This timetable shows your regular weekly class schedule. 
+              This timetable shows your regular weekly class schedule with attendance percentages for each subject. 
+              Subjects with attendance below 75% are highlighted in red.
               Please check official notices for any special classes, exams, or schedule changes.
             </p>
           </div>

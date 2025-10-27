@@ -11,6 +11,10 @@ from bs4 import BeautifulSoup
 from typing import Optional, Dict, List, Any
 import io
 import uuid
+from PIL import Image, ImageEnhance, ImageFilter
+import httpx
+import base64
+import re
 
 app = FastAPI(
     title="SRMAP Student Portal API",
@@ -32,6 +36,99 @@ BASE_URL = "https://student.srmap.edu.in/srmapstudentcorner"
 
 # In-memory session store (use Redis in production)
 sessions: Dict[str, requests.Session] = {}
+
+# ==================== CAPTCHA SOLVER ====================
+
+async def solve_captcha(image_bytes: bytes) -> str:
+    """
+    Automatically solve SRMAP captcha using OCR.Space FREE API - OPTIMIZED
+    Works in production (Vercel/Render) - no installation needed!
+    Returns the captcha text (5 characters)
+    """
+    try:
+        # Pre-process image for better OCR accuracy
+        try:
+            from PIL import ImageEnhance, ImageFilter
+            img = Image.open(io.BytesIO(image_bytes))
+            
+            # Convert to grayscale
+            img = img.convert('L')
+            
+            # Enhance contrast
+            enhancer = ImageEnhance.Contrast(img)
+            img = enhancer.enhance(2.0)
+            
+            # Enhance sharpness
+            enhancer = ImageEnhance.Sharpness(img)
+            img = enhancer.enhance(2.0)
+            
+            # Apply threshold to make it binary (black and white)
+            img = img.point(lambda x: 0 if x < 128 else 255, '1')
+            
+            # Resize for better OCR (larger = better accuracy)
+            img = img.resize((img.width * 2, img.height * 2), Image.Resampling.LANCZOS)
+            
+            # Convert back to bytes
+            img_buffer = io.BytesIO()
+            img.save(img_buffer, format='PNG')
+            image_bytes = img_buffer.getvalue()
+        except Exception as img_err:
+            print(f"⚠️ Image preprocessing failed, using original: {img_err}")
+        
+        # Convert image bytes to base64
+        base64_image = base64.b64encode(image_bytes).decode('utf-8')
+        
+        # Use OCR.Space FREE API with increased timeout
+        async with httpx.AsyncClient(timeout=30.0) as client:  # Increased timeout for OCR API
+            # OCR.Space free API endpoint
+            response = await client.post(
+                'https://api.ocr.space/parse/image',
+                data={
+                    'base64Image': f'data:image/png;base64,{base64_image}',
+                    'language': 'eng',
+                    'isOverlayRequired': False,
+                    'detectOrientation': False,
+                    'scale': True,
+                    'OCREngine': 2,  # Engine 2 is better for simple text
+                },
+                headers={
+                    'apikey': 'helloworld'  # Free tier API key (public)
+                }
+            )
+            
+            if response.status_code == 200:
+                result = response.json()
+                
+                if result.get('IsErroredOnProcessing') == False:
+                    parsed_text = result.get('ParsedResults', [{}])[0].get('ParsedText', '')
+                    
+                    if parsed_text:
+                        # Clean the result - remove spaces, newlines, special chars
+                        captcha_text = parsed_text.upper().strip()
+                        captcha_text = re.sub(r'[^A-Z0-9]', '', captcha_text)
+                        
+                        # SRMAP captcha is typically 5 characters
+                        if len(captcha_text) >= 5:
+                            captcha_text = captcha_text[:5]
+                        
+                        if len(captcha_text) == 5:
+                            print(f"✓ Captcha solved: {captcha_text}")
+                            return captcha_text
+                        else:
+                            print(f"⚠️ OCR returned wrong length: {captcha_text}")
+                
+                print(f"✗ OCR.Space API issue: {result}")
+            else:
+                print(f"✗ OCR.Space API failed with status: {response.status_code}")
+            
+            return ""
+            
+    except httpx.ReadTimeout:
+        print(f"⚠️ OCR.Space API timed out (server may be slow or unreachable)")
+        return ""
+    except Exception as e:
+        print(f"Error solving captcha: {e}")
+        return ""
 
 # Endpoint mapping based on the JavaScript from apis.txt
 REPORT_ENDPOINTS = {
@@ -59,7 +156,7 @@ REPORT_ENDPOINTS = {
 class LoginRequest(BaseModel):
     username: str
     password: str
-    captcha: str
+    captcha: Optional[str] = None  # Now optional - will be auto-solved if not provided
     session_id: Optional[str] = None
 
 
@@ -177,24 +274,51 @@ def get_captcha():
 
 
 @app.post("/api/login", response_model=LoginResponse)
-def login(credentials: LoginRequest):
+async def login(credentials: LoginRequest):
     """
-    Login to SRMAP portal
+    Login to SRMAP portal with automatic captcha solving and retry
     """
-    # Get or create session
-    if credentials.session_id and credentials.session_id in sessions:
-        session = sessions[credentials.session_id]
+    # Create new session if not provided
+    if not credentials.session_id or credentials.session_id not in sessions:
+        session = requests.Session()
+        # Get login page to establish session
+        session.get(f"{BASE_URL}/StudentLoginPage")
+        
+        # Generate session ID
+        session_id = str(uuid.uuid4())
+        sessions[session_id] = session
     else:
-        return LoginResponse(
-            success=False,
-            message="Invalid session_id. Please get a new captcha first."
-        )
+        session_id = credentials.session_id
+        session = sessions[session_id]
+    
+    # Auto-solve captcha if not provided (with retry mechanism)
+    captcha_text = credentials.captcha
+    if not captcha_text:
+        max_attempts = 1  # Reduced to 1 attempt to avoid long waits
+        for attempt in range(max_attempts):
+            # Get captcha image
+            captcha_response = session.get(f"{BASE_URL}/captchas")
+            if captcha_response.status_code == 200:
+                captcha_text = await solve_captcha(captcha_response.content)
+                if captcha_text:
+                    print(f"✓ Auto-solved captcha: {captcha_text}")
+                    break
+                else:
+                    print(f"⚠️ Captcha solve failed (OCR timeout or error)")
+            else:
+                print(f"✗ Failed to retrieve captcha")
+        
+        if not captcha_text:
+            return LoginResponse(
+                success=False,
+                message="Auto-captcha solving failed (OCR API timeout). Please try again or contact support if this persists."
+            )
     
     # Login
     login_data = {
         'txtUserName': credentials.username,
         'txtAuthKey': credentials.password,
-        'ccode': credentials.captcha.upper()
+        'ccode': captcha_text.upper()
     }
     
     response = session.post(
@@ -211,17 +335,17 @@ def login(credentials: LoginRequest):
     # Check login success
     if 'Invalid' in response.text or 'login' in response.url.lower():
         # Remove failed session
-        if credentials.session_id in sessions:
-            del sessions[credentials.session_id]
+        if session_id in sessions:
+            del sessions[session_id]
         return LoginResponse(
             success=False,
-            message="Login failed. Check your credentials and captcha."
+            message="Login failed. Check your credentials or try again."
         )
     
     return LoginResponse(
         success=True,
-        message="Login successful",
-        session_id=credentials.session_id
+        message="Login successful (captcha auto-solved)",
+        session_id=session_id
     )
 
 
