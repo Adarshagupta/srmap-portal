@@ -3,14 +3,7 @@ const nextConfig = {
   images: {
     domains: ['student.srmap.edu.in'],
   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'http://localhost:8000/api/:path*',
-      },
-    ];
-  },
+  // Removed rewrites - API URL is now handled via environment variables in src/lib/api.ts
 };
 
 export default nextConfig;
