@@ -1,0 +1,198 @@
+
+
+
+<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <title>SRM AP Student Login</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="/srmapstudentcorner/resources/js/jquery-3.2.1.min.js"></script>
+        <script src="/srmapstudentcorner/resources/js/jquery-ui.min.js"></script>
+        <link href="/srmapstudentcorner/resources/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/srmapstudentcorner/resources/css/jquery-ui.css" rel="stylesheet">
+        <style>
+            body {
+                background: url('/srmapstudentcorner/resources/images/Ariel-View-1.jpg') no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                background-size: cover;
+                -o-background-size: cover;
+                opacity: 0.9;
+                filter: alpha(opacity=50); /* For IE8 and earlier */
+            }
+        </style>
+        <script>
+            $(function () {
+                $(".form-control").on("keypress", function () {
+                    $("#divmsg").html("");
+                });
+
+                $("#frmSL").on("submit", function (event) {
+                    event.preventDefault();
+                    var actionname = $(this).prop("action");
+                    var passwordreset = actionname.includes("StudentPasswordReset");
+                    if (!passwordreset) {
+                        if (!validate($("#UserName"))) {
+                            return;
+                        }
+                        /*if (!validate($("#AuthKey"))) {
+                         return;
+                         }*/
+                        if (!validate($("#ccode"))) {
+                            return;
+                        }
+                    }
+                    $(this).off("submit");
+                    $("#divmsg").html("");
+                    $('#txtUserName').val($("#UserName").val());
+                    $('#txtAuthKey').val($("#AuthKey").val());
+                    $("#AuthKey").val(".......");
+
+                    this.submit();
+                });
+
+                /*$('#frmSL').submit(function () {
+                 $("#divmsg").html("");
+                 $('#txtUserName').val($("#UserName").val());
+                 $('#txtAuthKey').val($("#AuthKey").val());
+                 $("#AuthKey").val(".......");
+                 return true;
+                 });*/
+            });
+
+            function passwordreset() {
+
+                if (!validate($("#UserName"))) {
+                    return;
+                }
+                if (!validate($("#ccode"))) {
+                    return;
+                }
+
+                var data = $("#UserName").val().toUpperCase();
+                var datalength = 13;
+                if (data.substring(0, 2) == 'AP') {
+                    datalength = 13;
+                } else {
+                    datalength = 5;
+                }
+                if ($("#UserName").val().length < datalength) {
+                    alert(" Enter Register Number");
+                    return;
+                } else {
+                    $('#frmSL').attr('action', '/srmapstudentcorner/StudentPasswordResetInitiate');
+                    $('#frmSL').submit();
+                }
+            }
+
+            function validate(argObject) {
+                var isValid = false;
+                var regexstring = argObject.attr("patterns");
+                var pattern = new RegExp(regexstring);
+                isValid = pattern.test(argObject.val());
+                if (!isValid) {
+                    alert(argObject.attr("itemref") + " has invalid characters or Empty");
+                    argObject.val("");
+                }
+                return isValid;
+            }
+            function funTerms() {
+                $('#frmpaytc').attr('action', '/srmapstudentcorner/paymentstc');
+                $('#frmpaytc').submit();
+            }
+        </script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="panel-primary">
+                <div class="" align="left">
+                    <img src="/srmapstudentcorner/resources/images/srmaplogo.png" alt="SRM Amaravathy" class="img-rounded"/>
+                </div>
+                <div class="panel-primary" align="center" style="margin: 0">
+                    <div class="container-fluid" style="margin-top: 2%;">
+                        <div class="col-md-6 panel" align="left" style="margin: 0" >
+                            <h2 class="text-info" style="font-size: 16pt">Welcome to SRM University, AP – Andhra Pradesh </h2>
+                            <p>
+                                <font style="color: #0000ff;font-size: medium">Freshers<br></font> <br>
+                                The Portal will help you to - 
+                            </p>
+                            <ul>
+                                <li>Login with your Application number and your Date of Birth will be the password in DDMMYYYY format.</li>
+                                <li>Choose the courses that you wish to study</li>
+                                <li>Complete the payment</li>
+                                <li>Download the Provisional Admission Letter.</li>
+                                <li>Complete your enrollment</li>
+                            </ul>
+                            </p>
+                            <p><font style="color: #0000ff;font-size: medium">Senior Students</font><br>
+                                Please login with your Registration Number and password to – 
+                            </p>
+                            <ul>
+                                <li>Register for semester courses</li>
+                                <li>View Class timetable, etc</li>
+                                <li>Pay your fee – tuition, etc</li>
+                                <li>View attendance, results etc</li>
+                            </ul>
+                            <p>
+                                For any technical support email to <font style="color: #0000ff;">itkm.helpdesk@srmap.edu.in</font>
+                                <span style="text-align: right;float: right;color: #0000ff;cursor: pointer" onclick="funTerms()"> Terms and Conditions </span>
+                            </p>
+                        </div>
+                        <div class="col-md-6" align="left" style="margin: 0">
+                            <div class="panel panel-primary" style="max-width: 75%;" align="left">
+                                <div class="panel-heading form-group">
+                                    <b><font color="#FFFFFF">Portal for Freshers and Senior Students</font> </b>
+                                </div>
+                                <div class="panel-body" style="margin: 0">
+                                    <form action="/srmapstudentcorner/StudentLoginToPortal" id="frmSL" method="post" >
+                                        <div class="form-group textbox-wrap">
+                                            <label for="exampleInputEmail1">Application Number / Register Number</label> <input 
+                                                type="text" class="form-control" id="UserName" patterns="^[A-Za-z0-9]"
+                                                placeholder="Enter Application Number / Register Number " itemref="Enter Application Number / Register Number" required="required" maxlength="13" value="">
+                                        </div>
+                                        <div class="form-group textbox-wrap" data-provide="datepicker"> 
+                                            <label for="exampleInputPassword1">Password</label> <input 
+                                                type="password" class="form-control" id="AuthKey"
+                                                placeholder="Password" required="required" itemref="Password" value="">
+                                        </div>
+                                        <div class="form-group textbox-wrap">
+                                            <img src="/srmapstudentcorner/captchas">
+                                            <input type='text' class="form-control" value="" id="ccode" name="ccode" itemref="Captcha Text" maxlength="5" patterns="^[A-Z0-9]"
+                                                   placeholder="Enter Captcha Text" required="required">
+                                        </div>
+                                        <button type="submit" style="width: 100%; font-size:1.1em;" class="btn btn-large btn btn-success btn-lg btn-block" ><b>Login</b></button>
+                                        <input type="hidden" name="txtUserName" id="txtUserName">
+                                        <input type="hidden" name="txtAuthKey" id="txtAuthKey">
+                                    </form>
+                                    <a href="javascript:passwordreset()">
+                                        <span style="float: right; color: #0000ff;text-align: right;cursor: pointer"><br>
+                                            &nbsp;&nbsp;&nbsp;Forgot Password&nbsp;&nbsp;&nbsp; 
+                                        </span>
+                                    </a>
+                                </div>
+
+                                <div style="color: #FF0000;text-align: center" id="divmsg">  </div>
+                                <div style="color: #000099;text-align: center">
+                                    If you are a Student and this is your first login, you must use your Register Number / Application Number as your User ID,
+                                    with your date of birth [Format ddmmyyyy E.g. 03121990] as your password.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-heading navbar-fixed-bottom" style="margin-top: 0;margin-bottom: 0; text-align: center;font-size: small;background-color: #101010;color: #FFF">
+                Developed by:
+                Firstline Infotech Pvt Ltd,
+                T.Nagar, Chennai,Tamil Nadu, India.
+                www.firstlineinfotech.com 
+            </div>
+        </div>
+        <form id="frmpaytc" method="post" target="_blank"></form>
+    </body>
+</html>

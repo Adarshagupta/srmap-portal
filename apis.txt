@@ -1,0 +1,787 @@
+
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>SRM AP Student's Corner| </title>
+        <link href="/srmapstudentcorner/resources/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/srmapstudentcorner/resources/css/font-awesome.css" rel="stylesheet">
+        <link href="/srmapstudentcorner/resources/css/custom.min.css" rel="stylesheet">
+        <link href="/srmapstudentcorner/resources/css/jquery-ui.css" rel="stylesheet">       
+        <link href="/srmapstudentcorner/resources/css/bootstrap-theme.min.css" rel="stylesheet">
+
+        <script src="/srmapstudentcorner/resources/js/jquery-3.2.1.min.js"></script>
+        <script src="/srmapstudentcorner/resources/js/jquery-ui.min.js"></script>
+        <script src="/srmapstudentcorner/resources/js/bootstrap.min.js"></script>
+
+
+    </head>
+
+    <body class="nav-md">
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <!--                            <span style="color: #55ea55" class="site_title">SRM AMARAVATI</span>-->
+                            <img alt="SRM AMARAVATI" src="/srmapstudentcorner/resources/images/srmaplogo.png" 
+                                 width="230px" height="60px"  class="img-container navbar nav_title">
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <!-- menu profile quick info -->
+                        <div class="profile clearfix">
+                            <div class="profile_pic">
+                                
+                                
+                                <img alt="Photo not found" src="/srmapstudentcorner/resources/photos/12f4a4627380df4313c1b0f85cc910b1.jpg?rn=3739" 
+                                     width="280px" height="100px"  class="img-circle profile_img">
+                            </div>
+                            <div class="profile_info">
+                                <span>Welcome,</span>
+                                <h2>ADARSH GUPTA</h2>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!-- /menu profile quick info -->
+
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section">
+                                <ul class="nav side-menu">
+                                    
+                                        
+                                            <li><a><i class="fa fa-book"></i> Academic <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><a arg="1" class="clsactivity" href="javascript:funLoadDetails(2);"><i class="fa fa-edit"></i> Student Wise Subjects </a></li>
+                                                        
+                                                    <li><a arg="1" class="clsactivity" href="javascript:funLoadDetails(10);"><i class="fa fa-calendar"></i> Time Table </a></li>
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(3);"><i class="fa fa-hourglass"></i>Attendance Details</a></li>
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(53);"><i class="fa fa-ticket"></i>OD/ML Details</a></li>
+                                                        
+                                                    <!--<li><a class="clsactivity" href="javascript:funLoadDetails(25);"><i class="fa fa-envelope"></i>Mid Semester Exam Schedule<span class="label label-info">New</span></a></li>-->
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(33);"><i class="fa fa-envelope"></i>Student Attendance<span class="label label-info">New</span></a></li>
+                                                        
+                                                        <li><a class="clsactivity" href="javascript:funLoadDetails(39);"><i class="fa fa-reorder"></i>Course Registration</a></li>
+                                                        <li><a class="clsactivity" href="javascript:funLoadDetails(42);"><i class="fa fa-reorder"></i>Course Registration Cancellation</a></li>
+                                                        
+                                                        
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(152);"><i class="fa fa-reorder"></i>Minor Program Registration</a></li> 
+                                                    <!--<li><a class="clsactivity" href="javascript:funLoadDetails(154);"><i class="fa fa-reorder"></i>Summer Term Registration</a></li>--> 
+                                                    
+                                                </ul>
+                                            </li>
+                                            <li><a><i class="fa fa-calendar"></i> Events <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><a class="clsactivity" href="javascript:funEventAttendance();"><i class="fa fa-user"></i>Event Attendance</a></li> 
+                                                </ul>
+                                            </li>
+                                            <li><a><i class="fa fa-cc-visa "></i>SAP<span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    
+                                                        <li><a class="clsactivity" href="javascript:funLoadDetails(43);"><i class="fa fa-registered"></i>SAP Process</a></li>
+                                                        <li><a class="clsactivity" href="javascript:funLoadDetails(46);"><i class="fa fa-remove"></i>Withdraw</a></li>
+                                                        <li><a class="clsactivity" href="javascript:funLoadDetails(47);"><i class="fa fa-database"></i>Details</a></li>
+                                                        <li><a class="clsactivity" href="javascript:funLoadDetails(48);"><i class="fa fa-file-archive-o"></i>Attachments</a></li>
+                                                        <li><a class="clsactivity" href="javascript:funLoadDetails(49);"><i class="fa fa-envelope"></i>Feedback</a></li>
+                                                        
+                                                </ul>
+                                            </li>
+
+                                            <li><a><i class="fa fa-dollar"></i> Finance <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    
+                                                        <li><a class="clsactivity" href="javascript:funLoadDetails(7);"><i class="fa fa-rupee"></i>Fee Paid Details</a></li>
+                                                        <li><a class="clsactivity" href="javascript:funLoadDetails(8);"><i class="fa fa-dollar"></i>Fee Due Details</a></li>
+                                                        
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(26);"><i class="fa fa-dollar"></i>Online Payment Verification</a></li> 
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(27);"><i class="fa fa-dollar"></i>Payment Acknowledgment</a></li> 
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(54);"><i class="fa fa-file"></i> Bank Account Details</a></li> 
+                                                </ul>
+                                            </li>
+
+                                            <li><a><i class="fa fa-edit"></i> Examination <span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(5);"><i class="fa fa-map"></i>Internal Mark Details</a></li>
+                                                        
+                                                        <li><a class="clsactivity" href="javascript:funLoadDetails(22);"><i class="fa fa-file-archive-o"></i>Earlier Internal Marks</a></li>
+                                                        
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(15);"><i class="fa fa-dashboard"></i>Current Semester Results</a></li>
+                                                    <li><a id="5" class="clsactivity" href="javascript:funLoadDetails(6);"><i class="fa fa-edge"></i>Exam Mark Details</a></li>
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(13);"><i class="fa fa-tablet"></i>Exam Registration</a></li>
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(159);"><i class="fa fa-tablet"></i>Exam Registration Details</a></li>
+                                                    <!--<li><a class="clsactivity" href="javascript:funLoadDetails(25);"><i class="fa fa-envelope"></i>Supplementary Exam Time Table - Dec 2020<span class="label label-info">New</span></a></li>
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(25);"><i class="fa fa-envelope"></i>Semester Exam Time Table - March 2021<span class="label label-info">New</span></a></li>
+                                                    <!--<li><a class="clsactivity" href="javascript:funLoadDetails(37);"><i class="fa fa-tablet"></i>Arrear Exam Registration</a></li>-->
+                                                    
+                                                    
+                                                    <!--<li><a class="clsactivity" href="javascript:funLoadDetails(150);"><i class="fa fa-mortar-board"></i>Convocation Registration</a></li>-->
+                                                </ul>
+                                            </li>
+                                            <li><a><i class="fa fa-building-o"></i>Hostel<span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(31);"><i class="fa fa-hospital-o"></i>Hostel Booking for Full Year</a></li>
+                                                    <!--<li><a class="clsactivity" href="javascript:funLoadDetails(156);"><i class="fa fa-hospital-o"></i>Hostel  Booking for a Period</a></li>-->
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(21);"><i class="fa fa-stack-exchange"></i>Room Details</a></li>
+                                                    <li><a class="clsactivity" href="https://srmap.edu.in/hostel/layout/" target="_blank"><i class="fa fa-stack-exchange"></i>Hostel Layout & FAQs</a></li>
+                                                    <li><a class="clsactivity" href="https://srmap.edu.in/hostel/" target="_blank"><i class="fa fa-repeat"></i>Hostel Refund Policy</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a><i class="fa fa-bus"></i>Transport<span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(51);"><i class="fa fa-bus"></i>Transport Registration</a></li>
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(52);"><i class="fa fa-bus"></i>Registration Acknowledgment</a></li>
+                                                    <li><a class="clsactivity" href="//www.srmap.edu.in/transport" target="_blank"><i class="fa fa-stack-exchange"></i>Transport & FAQs</a></li>
+                                                    <li><a class="clsactivity" href="https://srmap.edu.in/wp-content/uploads/2022/07/Transportation-Fee-Refund-Policy.pdf?x95317" target="_blank"><i class="fa fa-repeat"></i>Transport Refund Policy</a></li>
+                                                </ul>
+                                            </li>
+
+                                            
+
+                                            <li><a><i class="fa fa-wpforms"></i>Feedback<span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <!--<li><a class="clsactivity" href="javascript:funLoadDetails(29);"><i class="fa fa-edit"></i>Mid Semester Feedback</a></li>-->
+                                                    <li><a class="clsactivity" href="javascript:funLoadDetails(9);"><i class="fa fa-edit"></i>End Semester Feedback</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a class="clsactivity" href="javascript:funLoadDetails(107);"><i class="fa fa-wpforms"></i>Announcements</a></li>
+                                            
+
+                                          
+                                    
+                                    
+                                    
+                                        <li><a><i class="fa fa-dollar"></i> Verification <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a class="clsactivity" href="javascript:funMobileVerification();"><i class="fa fa-dollar"></i>Mobile  No Verification</a></li> 
+                                            </ul>
+                                        </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /sidebar menu -->
+
+                        <!-- /menu footer buttons -->
+                        <div class="sidebar-footer hidden-small">
+                            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                                <span class="glyphicon" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Profile" onclick="javascript:funLoadDetails(1);">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Change Password" onclick="javascript:funLoadDetails(17);">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="Logout">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                        <!-- /menu footer buttons -->
+                    </div>
+                </div>
+
+                <!-- top navigation -->
+                <div class="top_nav">
+                    <div class="nav_menu"  style="background-color: #2a3f54;">
+                        <nav>
+                            <div class="nav toggle">
+                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                            </div>
+
+                            <ul class="nav navbar-nav navbar-right ">
+                                <li class="" style="color: fff">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <img src="images/img.jpg" alt="">ADARSH GUPTA
+                                        <span class=" fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                        <li><a href="javascript:funLoadDetails(1);"> Profile</a></li>
+                                        <li><a href="javascript:funLoadDetails(17);">Change Password</a></li>
+                                        <li><a href="Logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- /top navigation -->
+
+                <!-- page content -->
+                <div class="right_col" role="main" id="divContent" style="height: 100%;">
+
+                </div>
+                <div  id="divAlert"></div>
+                <!-- /page content -->
+
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        SRM-AP Andhra Pradesh Student's Corner by <a href="http://firstlineinfotech.com">Firstline Infotech Pvt Ltd,Chennai</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+        </div>
+        <script src="/srmapstudentcorner/resources/js/jquery-3.2.1.min.js"></script>
+        <script src="/srmapstudentcorner/resources/js/jquery-ui.min.js"></script>
+        <script src="/srmapstudentcorner/resources/js/bootstrap.min.js"></script>
+        <script src="/srmapstudentcorner/resources/js/custom.js"></script>
+        <script>
+                                $(function () {
+                                    debugger;
+                                    $("body").on("contextmenu", function (e) {
+                                        return false;
+                                    });
+
+                                    $('body').bind('cut copy paste', function (e) {
+                                        e.preventDefault();
+                                    });
+                                    //$('a.clsactivity').on('click',{param:$(this).className},funLoadDetails);
+                                    //$('a.clsactivity').on('click', funLoadDetails);
+                                    var pageload = '0';
+                                    var mobileverification = '1';
+                                    var lpersonaldetailverificationstatus = '0';
+                                    var studentactivestatus = '1';
+                                    if (pageload > 0 && mobileverification > 0) {
+                                        funLoadDetails(pageload);
+                                    } else if (pageload == 0 && mobileverification > 0) {
+                                        //funLoadDetails(1);
+                                    } else {
+                                        funMobileVerification();
+                                    }
+                                    
+                                    if (pageload > 0 && lpersonaldetailverificationstatus > 0) {
+                                        funLoadDetails(pageload);
+                                    } else if (pageload == 0 && lpersonaldetailverificationstatus >= 0) {
+                                        funLoadDetails(1);
+                                    } else if (studentactivestatus == 1 && lpersonaldetailverificationstatus == 0) {
+                                      funLoadDetails(1);
+                                    }
+
+                                    navigator.geolocation.getCurrentPosition(showPosition);
+                                    function showPosition(position) {
+                                        $('#dynamiclatdata').val(position.coords.latitude);
+                                        $('#dynamiclonxdata').val(position.coords.longitude);
+                                    }
+                                });
+
+                                function funLoadDetails(argId) {
+                                    debugger;
+                                    //alert($(this).className));
+                                    //event.data.param
+                                    $("#divContent").html("Loading.....");
+                                    if (argId < 8 || argId == 10 || argId == 15 || argId == 18 || argId == 21 || argId == 22 || argId == 25 || argId == 35 || argId == 47 || argId == 53) {
+                                        $.post("students/report/studentreportresources.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 8) {
+                                        $.post("students/transaction/feeduegroups.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 9) {
+                                        $.post("students/transaction/subjectwisefeedback.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 29) {
+                                        $.post("students/transaction/subjectwisefeedback.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 11) {
+                                        //hostelregistration  , hostelroomrequest
+                                        $.post("students/registrations/hostelregistration.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 31) {
+                                        //hostelregistration  , hostelroomrequest
+                                        $.post("students/registrations/hostelregistrationinstruction.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 12) {
+                                        $.post("students/registrations/transportregistration.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+
+                                    } else if (argId == 51) {
+                                        $.post("students/registrations/transportregistrationinstructions.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 52) {
+
+                                        window.open("students/report/transportconfirmationprint.jsp");
+                                        /*$.post("students/report/transportconfirmationprint.jsp", {ids: argId}, function (data) {
+                                         $("#divContent").html(data);
+                                         }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                         alert(jqXHR.responseText);
+                                         });*/
+                                    } else if (argId == 13) {
+                                        //"students/transaction/semesterexamapplication.jsp"
+                                        $.post("students/transaction/semesterexamapplicationinstruction.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 37) {
+                                        //"students/transaction/semesterexamapplication.jsp"
+                                        $.post("students/registrations/arrearexamapplicationinstruction.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 24) {
+                                        $.post("students/transaction/semesterexamapplication.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 38) {
+                                        $.post("students/registrations/arrearexamregistration.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 14) {
+                                        $.post("students/transaction/applyrevaluation.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 39) {
+                                        $.post("students/registrations/studentscourseregistrationinstruction2022.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 16) {
+                                        $.post("students/registrations/studentsCourseRegistration2022.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 40) {
+                                        $.post("students/registrations/studentElectiveCourseRegistrationInstruction2024.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 41) {
+                                        $.post("students/registrations/studentElectiveCourseRegistration2024.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 42) {
+                                        $.post("students/registrations/studentcourseregistrationcancellation.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 17) {
+                                        $.post("students/transaction/changepassoword.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 19) {
+                                        $.post("students/transaction/hostelroomrequest.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 32) {
+                                        $.post("students/transaction/hostelroomtransfer.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 20) {
+                                        $.post("students/transaction/studentsonlinepaymentresponse.jsp", {ids: argId, txnid: '', msgs: ''}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 30) {
+                                        $.post("students/transaction/preenrollement.jsp", {ids: argId, stuId: '20878'}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 26) {
+                                        $.post("students/onlinepayments/onlinepaymentreconcilation.jsp", {ids: argId, stuId: '20878'}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 27) {
+                                        $.post("students/report/receiptgeneration.jsp", {ids: argId, stuId: '20878'}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 33) {
+                                        $.post("students/transaction/studentattendance.jsp", {ids: argId, stuId: '20878'}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 34) {
+                                        $.post("students/report/studentexamhallticket.jsp", {ids: argId, stuId: '20878'}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 36) {
+                                        $.post("students/transaction/mentorchangerequest.jsp", {ids: argId, stuId: '20878'}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 41) {
+                                        $.post("students/registrations/studentscourseregistrationcurrentsemester.jsp", {ids: argId, stuId: '20878'}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 42) {
+                                        $.post("students/registrations/studentscourseregistrationcurrentsemesterinstruction.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 43) {
+                                        $.post("students/registrations/sapregistrationinstruction.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 44) {
+                                        $.post("students/registrations/sapregistration.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 45) {
+                                        $.post("students/registrations/sapregistrationedit.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 46) {
+                                        $.post("students/registrations/sapwithdraw.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 48) {
+                                        $.post("students/registrations/sapattachfiles.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 49) {
+                                        $.post("students/registrations/sapfeedback.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 54) {
+                                        $.post("students/transaction/studentbankdetails.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 55) {
+                                        $.post("students/report/phdstudentsbiometricdetails.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 107) {
+                                        $.post("students/report/announcements.jsp", {ids: argId, stuId: '20878'}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 150) {
+                                        $.post("students/registrations/convocationregistrationinstructions.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 151) {
+                                        $.post("students/registrations/convocationregistration.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 152) {
+                                        $.post("students/registrations/minorregistrationinstruction.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 153) {
+                                        $.post("students/registrations/minorregistration.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 154) {
+                                        $.post("students/registrations/summertermregistrationinstruction.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 155) {
+                                        $.post("students/registrations/summertermregistration.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 156) {
+                                        $.post("students/registrations/adhochostelregistrationinstruction.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 157) {
+                                        $.post("students/registrations/adhochostelregistration.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 158) {
+                                        $.post("students/transaction/adhochostelroomrequest.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 159) {
+                                        $.post("students/report/examaplicationreport.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 160) {
+                                        $.post("students/transaction/studentpersonaldetailsupdate.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 161) {
+                                        $.post("students/registrations/studentspecializationwillingness.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 162) {
+                                        $.post("students/transaction/studentsubfieldsupdate.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } 
+                                }
+
+                                function funEarlierInternalMarks(argId) {
+                                    debugger;
+                                    $.post("students/report/studentreportresources.jsp", {ids: 23, filter: argId}, function (data) {
+                                        $("#divInternalMarks").html(data);
+                                    }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                        alert(jqXHR.responseText);
+                                    });
+
+                                }
+
+                                function funLoadEnrollment(argId) {
+                                    debugger;
+                                    //alert($(this).className));
+                                    //event.data.param
+                                    $("#divContent").html("Loading.....");
+                                    if (argId == 101) {
+                                        $.post("students/enrollment/personaldetails.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 102) {
+                                        $.post("students/enrollment/parentdetails.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 103) {
+                                        $.post("students/enrollment/addressdetails.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 104) {
+                                        $.post("students/enrollment/educationqualificationdetails.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 105) {
+                                        $.post("students/enrollment/achievements.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 106) {
+                                        $.post("students/enrollment/attachments.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    } else if (argId == 107) {
+                                        $.post("students/enrollment/finalsubmit.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+                                    }
+                                }
+
+                                function funAdmissionCancelRequest() {
+                                    debugger;
+                                    $.post("students/enrollment/cancellationrequest.jsp", {ids: 23, filter: ''}, function (data) {
+                                        $("#divContent").html(data);
+                                    }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                        alert(jqXHR.responseText);
+                                    });
+
+                                }
+                                function funSAPDoumentDownload(arg) {
+                                    $("#filename").val(arg);
+                                    $("#frmsapregistrationapplicationprint").submit();
+                                }
+                                function funSAPApplicationhistroy() {
+                                    var ajaxParameter = [];
+                                    ajaxParameter.push({name: "ids", value: 3});
+                                    $.post("students/registrations/sapregistrationresource.jsp", ajaxParameter, function (data) {
+                                        $("#divAlert").html(data);
+                                        $("#divAlert").attr("title", "SAP Application History ");
+                                        $("#divAlert").dialog({
+                                            resizable: false,
+                                            modal: true,
+                                            width: '1200px',
+                                            height: 600,
+                                            position: {my: 'top', at: 'top+100'},
+                                            buttons: {
+                                                "Ok": function () {
+                                                    $(this).dialog("close");
+                                                }
+                                            }
+                                        });
+                                    }, "html");
+                                }
+
+                                function funApplicant(argId) {
+                                    debugger;
+                                    $("#divContent").html("Loading.....");
+                                    if (argId == 103) {
+                                        $.post("students/transaction/palacknowledgement.jsp", {ids: argId}, function (data) {
+                                            $("#divContent").html(data);
+                                        }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                            alert(jqXHR.responseText);
+                                        });
+//                                        $("#frmReportPrint").submit();
+                                    }
+                                }
+
+                                function funMobileVerification() {
+                                    $.post("students/transaction/mobilenumberverification.jsp", {ids: "1"}, function (data) {
+                                        $("#divContent").html(data);
+                                    }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                        alert(jqXHR.responseText);
+                                    });
+                                }
+
+                                function funEventAttendance() {
+                                    $.post("students/transaction/eventattendance.jsp", {ids: 1}, function (data) {
+                                        $("#divContent").html(data);
+                                    }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                                        alert(jqXHR.responseText);
+                                    });
+                                }
+        </script>
+        <form name="frmReportPrint" id="frmReportPrint" method="POST" action="/srmapstudentcorner/applicant/transaction/documentprint.jsp" target="_blank">
+            <input type="hidden" name="studentId" id="studentId" value="20878">
+            <input type="hidden" name="reportId" id="reportId" value="0">
+            <input type="hidden" name="dynamiclatdata" id="dynamiclatdata" value="0">
+            <input type="hidden" name="dynamiclonxdata" id="dynamiclonxdata" value="0">
+        </form>
+    </body>
+</html>
+
